@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gColorPrimary">#57374e</color>
+    <color name="gColorPrimaryDark">#4b314c</color>
+    <color name="gColorAccent">#e44158</color>
+</resources>
