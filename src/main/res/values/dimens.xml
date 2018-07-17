@@ -1,0 +1,23 @@
+<resources>
+    <dimen name="g_loading_circle_size">64dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="g_space_line">0.5dp</dimen>
+    <dimen name="g_padding_xxsmall">2dp</dimen>
+    <dimen name="g_padding_xsmall">4dp</dimen>
+    <dimen name="g_padding_small">6dp</dimen>
+    <dimen name="g_padding_medium">8dp</dimen>
+    <dimen name="g_padding_large">12dp</dimen>
+    <dimen name="g_padding_xlarge">16dp</dimen>
+    <dimen name="g_padding_xxlarge">24dp</dimen>
+    <dimen name="g_padding_xxxlarge">32dp</dimen>
+
+    <!-- font text -->
+    <dimen name="g_font_xxsmall">9sp</dimen>
+    <dimen name="g_font_xsmall">10sp</dimen>
+    <dimen name="g_font_small">12sp</dimen>
+    <dimen name="g_font_medium">14sp</dimen>
+    <dimen name="g_font_large">16sp</dimen>
+    <dimen name="g_font_xlarge">18sp</dimen>
+    <dimen name="g_font_xxlarge">20sp</dimen>
+</resources>

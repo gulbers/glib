@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="gAppFont" format="string" />
+
+    <declare-styleable name="GEditText">
+        <attr name="gAppFont"/>
+    </declare-styleable>
+    <declare-styleable name="GButton">
+        <attr name="gAppFont"/>
+    </declare-styleable>
+    <declare-styleable name="GTextView">
+        <attr name="gAppFont"/>
+    </declare-styleable>
+
+</resources>
