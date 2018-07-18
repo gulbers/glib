@@ -17,6 +17,10 @@ dependencies {
   compile 'net.gulbers:glib:1.0'
 }
 ```
+
+### How to use
+Check [WIKI](https://github.com/gulbers/glib/wiki) to see the full description
+
 ### Features
 #### Custom View
 For XML view usage:
