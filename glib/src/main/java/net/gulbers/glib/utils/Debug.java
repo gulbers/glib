@@ -7,6 +7,13 @@ import android.util.Log;
  */
 
 public class Debug {
+    /**
+     * Log error
+     *
+     * @param isDebug   debug option true or false
+     * @param tag log TAG
+     * @param message log message
+     */
     public static void e(boolean isDebug, String tag, String message) {
         if (isDebug) {
             if (message.length() > 3000) {
