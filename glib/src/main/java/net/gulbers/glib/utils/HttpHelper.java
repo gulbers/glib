@@ -77,18 +77,18 @@ public class HttpHelper {
      * @param jsonObject {@link JSONObject} data
      */
     public void run(String url, int method, JSONObject jsonObject) {
-        if (url == null || url.length() < 5) {
-            if (mListener != null) {
-                mListener.onFailed("url: null");
-            }
-            return;
-        }
-
-        Debug.e(isDebug, TAG, "http url: " + url);
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(timeout, TimeUnit.SECONDS)
                 .writeTimeout(timeout, TimeUnit.SECONDS).readTimeout(timeout, TimeUnit.SECONDS)
                 .build();
-        Request.Builder reqBuilder = new Request.Builder().url(url);
+        Request.Builder reqBuilder;
+        try {
+            reqBuilder = new Request.Builder().url(url);
+        } catch (Exception e) {
+            if (mListener != null) {
+                mListener.onFailed(e.getMessage());
+            }
+            return;
+        }
         if (method == GET || jsonObject == null) {
             jsonObject = new JSONObject();
         }
@@ -149,6 +149,16 @@ public class HttpHelper {
      * @param postFiles {@link JSONArray} files
      */
     public void run(String url, JSONObject postdata, JSONArray postFiles) {
+        Request.Builder reqBuilder;
+        try {
+            reqBuilder = new Request.Builder().url(url);
+        } catch (Exception e) {
+            if (mListener != null) {
+                mListener.onFailed(e.getMessage());
+            }
+            return;
+        }
+
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         MediaType MEDIA_TYPE_IMG;
 
@@ -193,7 +203,7 @@ public class HttpHelper {
         }
 
         RequestBody body = builder.build();
-        Request request = new Request.Builder().url(url).header("Accept", "application/json").header("Content-Type", "multipart/form-data").post(body).build();
+        Request request = reqBuilder.header("Accept", "application/json").header("Content-Type", "multipart/form-data").post(body).build();
         OkHttpClient client = new OkHttpClient();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -230,9 +240,12 @@ public class HttpHelper {
      * @param formBody Post param in {@link RequestBody}
      */
     public void run(String url, RequestBody formBody) {
-        if (url == null || url.length() < 5) {
+        Request.Builder reqBuilder;
+        try {
+            reqBuilder = new Request.Builder().url(url);
+        } catch (Exception e) {
             if (mListener != null) {
-                mListener.onFailed("url: null");
+                mListener.onFailed(e.getMessage());
             }
             return;
         }
@@ -242,7 +255,6 @@ public class HttpHelper {
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(timeout, TimeUnit.SECONDS)
                 .writeTimeout(timeout, TimeUnit.SECONDS).readTimeout(timeout, TimeUnit.SECONDS)
                 .build();
-        Request.Builder reqBuilder = new Request.Builder().url(url);
         reqBuilder.post(formBody);
 
         Request request = reqBuilder.build();
@@ -288,9 +300,12 @@ public class HttpHelper {
      * @param fileName Filename of downloaded file. Pass null will bi save as the url name
      */
     public void download(String url, String filePath, String fileName) {
-        if (url == null) {
+        Request.Builder reqBuilder;
+        try {
+            reqBuilder = new Request.Builder().url(url);
+        } catch (Exception e) {
             if (mListener != null) {
-                mListener.onFailed("url: null");
+                mListener.onFailed(e.getMessage());
             }
             return;
         }
@@ -310,7 +325,7 @@ public class HttpHelper {
         OkHttpClient client = new OkHttpClient.Builder().connectTimeout(timeout, TimeUnit.SECONDS)
                 .writeTimeout(timeout, TimeUnit.SECONDS).readTimeout(timeout, TimeUnit.SECONDS)
                 .build();
-        Request request = new Request.Builder().url(url).build();
+        Request request = reqBuilder.build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {

@@ -33,6 +33,7 @@ public final class TelephonyInfo {
      * @param isDebug boolean debug value
      * @return TelephonyInfo instance
      */
+    @SuppressWarnings("deprecation")
     @SuppressLint("HardwareIds")
     public static TelephonyInfo getInstance(Context context, boolean isDebug) {
         if (telephonyInfo == null) {
